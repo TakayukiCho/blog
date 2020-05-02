@@ -1,22 +1,22 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import * as React from 'react';
+import Helmet from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 
-import 'modern-normalize'
-import '../styles/normalize'
+import { Global, css } from '@emotion/core';
+import normalize from '../styles/normalize';
 
-import Header from '../components/Header'
-import LayoutRoot from '../components/LayoutRoot'
-import LayoutMain from '../components/LayoutMain'
+import Header from '../components/Header';
+import Footer from '../components/molecules/Footer';
+import { fontFamily } from '../styles/font';
 
 interface StaticQueryProps {
   site: {
     siteMetadata: {
-      title: string
-      description: string
-      keywords: string
-    }
-  }
+      title: string;
+      description: string;
+      keywords: string;
+    };
+  };
 }
 
 const IndexLayout: React.FC = ({ children }) => (
@@ -32,19 +32,34 @@ const IndexLayout: React.FC = ({ children }) => (
       }
     `}
     render={(data: StaticQueryProps) => (
-      <LayoutRoot>
+      <>
+        <Global styles={() => css(normalize)} />
+        <Global
+          styles={() =>
+            css`
+              #outer-container {
+                ${fontFamily.normal}
+              }
+              html {
+                font-size: 16px;
+              }
+            `
+          }
+        />
         <Helmet
+          htmlAttributes={{ lang: 'ja' }}
           title={data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: data.site.siteMetadata.keywords }
+            { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
         />
         <Header title={data.site.siteMetadata.title} />
-        <LayoutMain>{children}</LayoutMain>
-      </LayoutRoot>
+        {children}
+        <Footer />
+      </>
     )}
   />
-)
+);
 
-export default IndexLayout
+export default IndexLayout;

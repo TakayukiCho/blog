@@ -1,21 +1,22 @@
-import * as React from 'react'
-import styled from '@emotion/styled'
+import * as React from 'react';
+import styled from '@emotion/styled';
 
-import { widths } from '../styles/variables'
-import { getEmSize } from '../styles/mixins'
+import tw from 'twin.macro';
 
-const StyledContainer = styled.div`
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
-  max-width: ${getEmSize(widths.lg)}em;
-`
+export const OuterContainer = styled.div`
+  ${tw`px-4 md:px-10`}
+`;
+
+export const InnerContainer = tw.div`max-w-3xl mx-auto`;
 
 interface ContainerProps {
-  className?: string
+  className?: string;
 }
 
-const Container: React.FC<ContainerProps> = ({ children, className }) => <StyledContainer className={className}>{children}</StyledContainer>
+const Container: React.FC<ContainerProps> = ({ children, className }) => (
+  <OuterContainer className={className}>
+    <InnerContainer>{children}</InnerContainer>
+  </OuterContainer>
+);
 
-export default Container
+export default Container;

@@ -1,46 +1,44 @@
-import * as React from 'react'
-import styled from '@emotion/styled'
-import { transparentize } from 'polished'
-import { Link } from 'gatsby'
+import React, { useState } from 'react';
+import tw from 'twin.macro';
+import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 
-import { heights, dimensions, colors } from '../styles/variables'
-import Container from './Container'
+import Logo from '../images/logo.svg';
+import HumbergerMenu from '../images/humbergerMenu.svg';
 
-const StyledHeader = styled.header`
-  height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.brand};
-  color: ${transparentize(0.5, colors.white)};
-`
+import Navigation from './organisms/Navigation';
+import Container from './Container';
 
-const HeaderInner = styled(Container)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-`
-
-const HomepageLink = styled(Link)`
-  color: ${colors.white};
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-`
+const Inner = styled.div`
+  ${tw`flex flex-row items-center h-full justify-between`}
+  padding-top: 9.5px;
+  padding-bottom: 9.5px;
+`;
 
 interface HeaderProps {
-  title: string
+  title: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => (
-  <StyledHeader>
-    <HeaderInner>
-      <HomepageLink to="/">{title}</HomepageLink>
-    </HeaderInner>
-  </StyledHeader>
-)
+const Header: React.FC<HeaderProps> = ({ title }) => {
+  const [isOpen, toggle] = useState(false);
 
-export default Header
+  const closeNavigation = () => {
+    toggle(!isOpen);
+  };
+
+  return (
+    <Container>
+      <Inner>
+        <Link to="/">
+          <img src={Logo} alt={title} />
+        </Link>
+        <button onClick={closeNavigation} type="button">
+          <img src={HumbergerMenu} alt="menu" />
+        </button>
+        <Navigation isOpen={isOpen} onClose={closeNavigation} />
+      </Inner>
+    </Container>
+  );
+};
+
+export default Header;
