@@ -51,12 +51,6 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
-      },
-    },
     'gatsby-plugin-emotion',
     '@davidodio/gatsby-plugin-emotion-css',
     'gatsby-plugin-typescript',

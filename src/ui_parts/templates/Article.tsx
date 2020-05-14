@@ -7,6 +7,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 
 import styled from '@emotion/styled';
+import Helmet from 'react-helmet';
 import IndexLayout from '../layouts/Layout';
 import PageTitle from '../elements/PageTitle';
 import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
@@ -22,6 +23,7 @@ type PageTemplateProps = {
       siteMetadata: {
         title: string;
         description: string;
+        siteUrl: string;
         author: {
           name: string;
           url: string;
@@ -55,6 +57,31 @@ const ContentWrapper = styled.div`
 
 const Article = ({ data, location }: PageTemplateProps) => (
   <IndexLayout>
+    <Helmet
+      meta={[
+        {
+          name: 'og:title',
+          content: data.mdx.frontmatter.title,
+        },
+        {
+          name: 'og:description',
+          content: data.mdx.excerpt,
+        },
+        {
+          name: 'og:image',
+          content: `${data.site.siteMetadata.siteUrl}${data.mdx.frontmatter.image?.childImageSharp.fluid.src}`,
+        },
+        {
+          name: 'twitter:creator',
+          content: '@changguizhiT',
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary',
+        },
+      ]}
+    />
+
     <BodyContainer css={tw`mb-4`}>
       <Img
         alt={data.mdx.frontmatter.title}
@@ -90,6 +117,7 @@ export const query = graphql`
       siteMetadata {
         title
         description
+        siteUrl
         author {
           name
           url
