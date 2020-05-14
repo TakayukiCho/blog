@@ -55,7 +55,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
 
     createPage({
       path: slug,
-      component: path.resolve(`./src/templates/${layout || 'Article'}.tsx`),
+      component: path.resolve(`./src/ui_parts/templates/${layout || 'Article'}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
@@ -77,7 +77,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
   categories.forEach(category => {
     createPage<CategoryPageContext>({
       path: `/${category}/`,
-      component: path.resolve('./src/templates/category.tsx'),
+      component: path.resolve('./src/ui_parts/templates/Category.tsx'),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         category,

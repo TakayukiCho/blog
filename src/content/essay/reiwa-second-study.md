@@ -1,5 +1,4 @@
 ---
-layout: page
 title: 令和二年、学問のすゝめ。
 date: 2020-05-02T13:55:28.948Z
 image: ../../images/gakumonnosusume.jpeg
