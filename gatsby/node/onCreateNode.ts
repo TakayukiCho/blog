@@ -1,11 +1,11 @@
-import { GatsbyNode } from 'gatsby'
+import { GatsbyNode } from 'gatsby';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   node,
   actions,
-  getNode
+  getNode,
 }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
 
   // Sometimes, optional fields tend to get not picked up by the GraphQL
   // interpreter if not a single content uses it. Therefore, we're putting them
@@ -16,32 +16,32 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   switch (node.internal.type) {
     case 'Mdx': {
       const { layout } = node.frontmatter as {
-        layout: string
-      }
-      const { relativePath } = getNode(node.parent)
+        layout: string;
+      };
+      const { relativePath } = getNode(node.parent);
 
-      const slug = `/${relativePath.replace('.md', '')}/`
-      const category = slug.split('/')[1] ?? 'others'
+      const slug = `/${relativePath.replace('.md', '')}/`;
+      const category = slug.split('/')[1] ?? 'others';
 
       // Used to generate URL to view this content.
       createNodeField({
         node,
         name: 'slug',
-        value: slug
-      })
+        value: slug,
+      });
 
       // Used to determine a page layout.
       createNodeField({
         node,
         name: 'layout',
-        value: layout || ''
-      })
+        value: layout || '',
+      });
 
       createNodeField({
         node,
         name: 'category',
-        value: category
-      })
+        value: category,
+      });
     }
   }
-}
+};
