@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
 import HumbergerMenu from '../../images/humbergerMenu.svg';
@@ -6,6 +6,7 @@ import HumbergerMenu from '../../images/humbergerMenu.svg';
 import Navigation from '../components/Navigation';
 import Container from '../elements/Container';
 import Logo from '../elements/Logo';
+import { useToggle } from '../../utils/hooks';
 
 const Inner = styled.div`
   ${tw`flex flex-row items-center h-full justify-between`}
@@ -14,20 +15,16 @@ const Inner = styled.div`
 `;
 
 const Header = () => {
-  const [isOpen, toggle] = useState(false);
-
-  const closeNavigation = () => {
-    toggle(!isOpen);
-  };
+  const [isOpen, toggle] = useToggle(false);
 
   return (
     <Container>
       <Inner>
         <Logo />
-        <button onClick={closeNavigation} type="button">
+        <button onClick={() => toggle} type="button">
           <img src={HumbergerMenu} alt="menu" />
         </button>
-        <Navigation isOpen={isOpen} onClose={closeNavigation} />
+        <Navigation isOpen={isOpen} onClose={() => toggle} />
       </Inner>
     </Container>
   );
