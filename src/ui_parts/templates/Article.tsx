@@ -6,12 +6,12 @@ import tw from 'twin.macro';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 
-import IndexLayout from '../layouts';
-import PageTitle from '../components/atoms/PageTitle';
-import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
-import { extendsToEdge } from '../styles/spacings';
-import DateLabelBig from '../components/atoms/DateLabelBig';
-import BodyContainer from '../components/BodyContainer';
+import IndexLayout from '../layouts/Layout';
+import PageTitle from '../elements/PageTitle';
+import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
+import { extendsToEdge } from '../../styles/spacings';
+import DateLabelBig from '../elements/DateLabelBig';
+import BodyContainer from '../elements/BodyContainer';
 
 interface PageTemplateProps {
   data: {

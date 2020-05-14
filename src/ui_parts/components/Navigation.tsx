@@ -3,9 +3,9 @@ import { css } from '@emotion/core';
 
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
-import CloseButton from '../molecules/CloseButton';
+import CloseButton from '../elements/CloseButton';
 import { categories } from '../../models/category';
-import NavigationItem from '../molecules/NavivagtionItem';
+import NavigationItem from '../elements/NavivagtionItem';
 
 const shown = css`
   opacity: 0.6;

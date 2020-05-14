@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 
-import IndexLayout from '../layouts';
-import BodyContainer from '../components/BodyContainer';
+import IndexLayout from '../ui_parts/layouts/Layout';
+import BodyContainer from '../ui_parts/elements/BodyContainer';
 
 const NotFoundPage = () => (
   <IndexLayout>

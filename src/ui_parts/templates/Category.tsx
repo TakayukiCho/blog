@@ -3,14 +3,14 @@ import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
 import { css } from '@emotion/core';
-import IndexLayout from '../layouts';
-import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
-import { Fields } from '../models/Fields';
-import PostCard from '../components/organisms/PostCard';
-import { CategoryPageContext } from '../../gatsby/node/createPages';
-import { getCategoryByName } from '../models/category';
-import PageTitle from '../components/atoms/PageTitle';
-import BodyContainer from '../components/BodyContainer';
+import IndexLayout from '../layouts/Layout';
+import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
+import { Fields } from '../../models/fields';
+import PostCard from '../components/PostCard';
+import { CategoryPageContext } from '../../../gatsby/node/createPages';
+import { getCategoryByName } from '../../models/category';
+import PageTitle from '../elements/PageTitle';
+import BodyContainer from '../elements/BodyContainer';
 
 type Props = {
   data: {

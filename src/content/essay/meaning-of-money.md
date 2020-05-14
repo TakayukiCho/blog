@@ -1,5 +1,4 @@
 ---
-layout: page
 title: 'お金の意味'
 date: "2016-07-18"
 ---

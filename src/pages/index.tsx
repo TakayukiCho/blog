@@ -2,11 +2,11 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
-import IndexLayout from '../layouts';
+import IndexLayout from '../ui_parts/layouts/Layout';
 import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
-import { Fields } from '../models/Fields';
-import PostCard from '../components/organisms/PostCard';
-import BodyContainer from '../components/BodyContainer';
+import { Fields } from '../models/fields';
+import PostCard from '../ui_parts/components/PostCard';
+import BodyContainer from '../ui_parts/elements/BodyContainer';
 
 type Props = {
   data: {
