@@ -6,7 +6,7 @@ import tw from 'twin.macro';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 
-import IndexLayout from '../layouts/layout';
+import IndexLayout from '../layouts/Layout';
 import PageTitle from '../elements/PageTitle';
 import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
 import { extendsToEdge } from '../../styles/spacings';

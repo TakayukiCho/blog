@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
 import { css } from '@emotion/core';
-import IndexLayout from '../layouts/layout';
+import IndexLayout from '../layouts/Layout';
 import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
 import { Fields } from '../../models/Fields';
 import PostCard from '../layouts/PostCard';

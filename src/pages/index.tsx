@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
-import IndexLayout from '../ui_parts/layouts/layout';
+import IndexLayout from '../ui_parts/layouts/Layout';
 import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
 import { Fields } from '../models/Fields';
 import PostCard from '../ui_parts/layouts/PostCard';
