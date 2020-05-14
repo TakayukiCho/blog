@@ -11,9 +11,10 @@ export const InnerContainer = tw.div`max-w-3xl mx-auto`;
 
 interface ContainerProps {
   className?: string;
+  children: React.ReactNode;
 }
 
-const Container: React.FC<ContainerProps> = ({ children, className }) => (
+const Container = ({ children, className }: ContainerProps) => (
   <OuterContainer className={className}>
     <InnerContainer>{children}</InnerContainer>
   </OuterContainer>

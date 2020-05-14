@@ -12,6 +12,7 @@ type Props = {
   data: {
     allMdx: {
       nodes: Array<{
+        id: string;
         frontmatter: FrontMatter;
         fields: Fields;
       }>;
@@ -24,8 +25,9 @@ const IndexPage = ({ data }: Props) => {
   return (
     <IndexLayout>
       <BodyContainer css={tw`bg-gray-100 pt-4 pb-10`}>
-        {data.allMdx.nodes.map(({ frontmatter, fields }) => (
+        {data.allMdx.nodes.map(({ frontmatter, fields, id }) => (
           <PostCard
+            key={id}
             image={
               frontmatter.image?.childImageSharp.fluid ?? data.file.childImageSharp.fluid
             }
@@ -46,6 +48,7 @@ export const query = graphql`
   query BlogIndex {
     allMdx(limit: 1000, sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
+        id
         frontmatter {
           image {
             childImageSharp {
