@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import HumbergerMenu from '../../images/humbergerMenu.svg';
 
-import Logo from '../images/logo.svg';
-import HumbergerMenu from '../images/humbergerMenu.svg';
-
-import Navigation from './organisms/Navigation';
-import Container from './Container';
+import Navigation from '../components/Navigation';
+import Container from '../elements/Container';
+import Logo from '../elements/Logo';
 
 const Inner = styled.div`
   ${tw`flex flex-row items-center h-full justify-between`}
@@ -15,11 +13,7 @@ const Inner = styled.div`
   padding-bottom: 9.5px;
 `;
 
-interface HeaderProps {
-  title: string;
-}
-
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header = () => {
   const [isOpen, toggle] = useState(false);
 
   const closeNavigation = () => {
@@ -29,9 +23,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <Container>
       <Inner>
-        <Link to="/">
-          <img src={Logo} alt={title} />
-        </Link>
+        <Logo />
         <button onClick={closeNavigation} type="button">
           <img src={HumbergerMenu} alt="menu" />
         </button>

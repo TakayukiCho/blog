@@ -55,7 +55,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
 
     createPage({
       path: slug,
-      component: path.resolve(`./src/templates/${layout || 'page'}.tsx`),
+      component: path.resolve(`./src/templates/${layout || 'Article'}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,

@@ -3,11 +3,11 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { Global, css } from '@emotion/core';
-import normalize from '../styles/normalize';
+import normalize from '../../styles/normalize';
 
-import Header from '../components/Header';
-import Footer from '../components/molecules/Footer';
-import { fontFamily } from '../styles/font';
+import Header from './Header';
+import Footer from './Footer';
+import { fontFamily } from '../../styles/font';
 
 interface StaticQueryProps {
   site: {
