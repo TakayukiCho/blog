@@ -1,13 +1,12 @@
 {
-  "name": "gatsby-starter-typescript-plus",
-  "description": "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+  "name": "blog",
+  "description": "blog",
   "version": "1.0.0",
   "private": true,
-  "author": "Resi Respati <resir014@gmail.com>",
+  "author": "Takayuki Cho <taka.3365@gmail.com>",
   "keywords": [
-    "gatsby"
+    "blog"
   ],
-  "license": "MIT",
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
