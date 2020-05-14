@@ -17,11 +17,24 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "start": "yarn jdev",
-    "test": "yarn type-check && yarn lint",
-    "type-check": "tsc"
+    "type-check-src": "tsc -p tsconfig.json --noEmit",
+    "type-check-gatsby": "tsc -p ./gatsby/tsconfig.json --noEmit"
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "eslint . --ext .ts,.tsx --cache"
+    ],
+    "gatsby/**/*.ts?(x)": [
+      "eslint . --ext .ts,.tsx --cache"
+    ]
   },
   "dependencies": {
     "@davidodio/gatsby-plugin-emotion-css": "^1.0.0-beta.1",
@@ -76,6 +89,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
     "@types/typography": "^0.16.3",
+    "@types/vfile-message": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "eslint": "^6.6.0",
@@ -83,6 +97,8 @@
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
     "gh-pages": "^2.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }
