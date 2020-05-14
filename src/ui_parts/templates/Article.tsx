@@ -82,7 +82,7 @@ const Article = ({ data, location }: PageTemplateProps) => (
       ]}
     />
 
-    <BodyContainer css={tw`mb-4`}>
+    <BodyContainer css={tw`bg-color-gray-100`}>
       <Img
         alt={data.mdx.frontmatter.title}
         fluid={
@@ -102,7 +102,7 @@ const Article = ({ data, location }: PageTemplateProps) => (
       <SocialShares
         url={location.href}
         styles={css`
-          ${tw`mb-12`}
+          ${tw`pb-16`}
         `}
       />
     </BodyContainer>
