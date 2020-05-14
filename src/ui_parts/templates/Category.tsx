@@ -6,7 +6,7 @@ import { css } from '@emotion/core';
 import IndexLayout from '../layouts/Layout';
 import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
 import { Fields } from '../../models/Fields';
-import PostCard from '../layouts/PostCard';
+import PostCard from '../components/PostCard';
 import { CategoryPageContext } from '../../../gatsby/node/createPages';
 import { getCategoryByName } from '../../models/category';
 import PageTitle from '../elements/PageTitle';
