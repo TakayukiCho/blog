@@ -17,9 +17,10 @@ const translate = css`
 `;
 
 const Wrapper = styled.div`
-  ${tw`fixed inset-y-0  bg-white z-50 w-64 flex flex-col`}
+  ${tw`fixed inset-y-0  bg-white z-50 w-64 flex flex-col pl-6`}
   right: -16.1rem;
   transition: transform 0.3s ease-out;
+  touch-action: pan-y;
 `;
 
 const Overlay = styled.div`
@@ -37,7 +38,7 @@ type Props = {
 const Navigation = ({ isOpen, onClose }: Props) => {
   return (
     <>
-      <Wrapper css={[isOpen ? translate : undefined, tw`pl-6`]}>
+      <Wrapper css={[isOpen ? translate : undefined]}>
         <CloseButton
           onClose={onClose}
           styles={css`
