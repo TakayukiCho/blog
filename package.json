@@ -15,10 +15,8 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "dev": "gatsby develop",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "start": "yarn jdev",
-    "type-check-src": "tsc -p tsconfig.json --noEmit",
-    "type-check-gatsby": "tsc -p ./gatsby/tsconfig.json --noEmit"
+    "lint": "eslint '{src,gatsby}/**/*.{ts,tsx}'",
+    "start": "yarn jdev"
   },
   "engines": {
     "node": ">=8.0.0"
