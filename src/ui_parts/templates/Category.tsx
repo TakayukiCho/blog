@@ -62,7 +62,10 @@ export default IndexPage;
 
 export const query = graphql`
   query CategoryIndex($category: String!) {
-    allMdx(filter: { fields: { category: { eq: $category } } }) {
+    allMdx(
+      filter: { fields: { category: { eq: $category } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
       nodes {
         frontmatter {
           image {

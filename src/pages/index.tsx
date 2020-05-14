@@ -44,7 +44,7 @@ export default IndexPage;
 
 export const query = graphql`
   query BlogIndex {
-    allMdx {
+    allMdx(limit: 1000, sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
         frontmatter {
           image {

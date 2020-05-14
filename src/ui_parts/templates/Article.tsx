@@ -12,6 +12,7 @@ import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
 import { extendsToEdge } from '../../styles/spacings';
 import DateLabelBig from '../elements/DateLabelBig';
 import BodyContainer from '../elements/BodyContainer';
+import { isoDateToJaFormat } from '../../utils/date';
 
 interface PageTemplateProps {
   data: {
@@ -60,7 +61,9 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => (
         }
         css={[extendsToEdge, tw`mb-5 lg:max-w-3xl lg:mx-auto`]}
       />
-      <DateLabelBig css={tw`mb-3 ml-px`}>{data.mdx.frontmatter.date}</DateLabelBig>
+      <DateLabelBig css={tw`mb-2 ml-px`}>
+        {isoDateToJaFormat(data.mdx.frontmatter.date)}
+      </DateLabelBig>
       <PageTitle css={titleStyle}>{data.mdx.frontmatter.title}</PageTitle>
       {/* eslint-disable-next-line react/no-danger */}
       <div css={contentStyle}>
