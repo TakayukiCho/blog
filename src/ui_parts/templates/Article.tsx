@@ -29,6 +29,7 @@ type PageTemplateProps = {
       };
     };
     mdx: {
+      id: string;
       body: string;
       excerpt: string;
       frontmatter: FrontMatter;
@@ -52,7 +53,7 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Article: React.FC<PageTemplateProps> = ({ data, location }) => (
+const Article = ({ data, location }: PageTemplateProps) => (
   <IndexLayout>
     <BodyContainer css={tw`mb-4`}>
       <Img
@@ -98,6 +99,7 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       excerpt
+      id
       frontmatter {
         image {
           childImageSharp {

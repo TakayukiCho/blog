@@ -16,6 +16,7 @@ type Props = {
   data: {
     allMdx: {
       nodes: Array<{
+        id: string;
         frontmatter: FrontMatter;
         fields: Fields;
       }>;
@@ -42,8 +43,9 @@ const IndexPage = ({ data, pageContext }: Props) => {
     <IndexLayout>
       <BodyContainer css={tw`bg-gray-100 pb-8 pt-6`}>
         <PageTitle css={titleStyle}>{`${categoryLabel}の記事一覧`}</PageTitle>
-        {data.allMdx.nodes.map(({ frontmatter, fields }) => (
+        {data.allMdx.nodes.map(({ frontmatter, fields, id }) => (
           <PostCard
+            key={id}
             image={
               frontmatter.image?.childImageSharp.fluid ?? data.file.childImageSharp.fluid
             }
@@ -67,6 +69,7 @@ export const query = graphql`
       sort: { fields: frontmatter___date, order: DESC }
     ) {
       nodes {
+        id
         frontmatter {
           image {
             childImageSharp {

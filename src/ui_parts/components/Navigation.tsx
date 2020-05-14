@@ -44,9 +44,9 @@ const Navigation = ({ isOpen, onClose }: Props) => {
             ${tw`self-end mb-5`}
           `}
         />
-        {categories.map(navItem => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <NavigationItem {...navItem} />
+        {categories.map((navItem, index) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading,react/no-array-index-key
+          <NavigationItem {...navItem} key={index} />
         ))}
       </Wrapper>
       <Overlay css={isOpen ? shown : undefined} role="button" onClick={onClose} />
