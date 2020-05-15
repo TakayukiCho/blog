@@ -3,19 +3,20 @@ import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
 import { css } from '@emotion/core';
-import IndexLayout from '../layouts';
-import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
-import { Fields } from '../models/Fields';
-import PostCard from '../components/organisms/PostCard';
-import { CategoryPageContext } from '../../gatsby/node/createPages';
-import { getCategoryByName } from '../models/category';
-import PageTitle from '../components/atoms/PageTitle';
-import BodyContainer from '../components/BodyContainer';
+import IndexLayout from '../layouts/Layout';
+import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
+import { Fields } from '../../models/fields';
+import PostCard from '../components/PostCard';
+import { CategoryPageContext } from '../../../gatsby/node/createPages';
+import { getCategoryByName } from '../../models/category';
+import PageTitle from '../elements/PageTitle';
+import BodyContainer from '../elements/BodyContainer';
 
 type Props = {
   data: {
     allMdx: {
       nodes: Array<{
+        id: string;
         frontmatter: FrontMatter;
         fields: Fields;
       }>;
@@ -42,8 +43,9 @@ const IndexPage = ({ data, pageContext }: Props) => {
     <IndexLayout>
       <BodyContainer css={tw`bg-gray-100 pb-8 pt-6`}>
         <PageTitle css={titleStyle}>{`${categoryLabel}の記事一覧`}</PageTitle>
-        {data.allMdx.nodes.map(({ frontmatter, fields }) => (
+        {data.allMdx.nodes.map(({ frontmatter, fields, id }) => (
           <PostCard
+            key={id}
             image={
               frontmatter.image?.childImageSharp.fluid ?? data.file.childImageSharp.fluid
             }
@@ -62,8 +64,12 @@ export default IndexPage;
 
 export const query = graphql`
   query CategoryIndex($category: String!) {
-    allMdx(filter: { fields: { category: { eq: $category } } }) {
+    allMdx(
+      filter: { fields: { category: { eq: $category } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
       nodes {
+        id
         frontmatter {
           image {
             childImageSharp {

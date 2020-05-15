@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 module.exports = {
   siteMetadata: {
     title: 'eggfirst',
@@ -51,12 +52,6 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
-      },
-    },
     'gatsby-plugin-emotion',
     '@davidodio/gatsby-plugin-emotion-css',
     'gatsby-plugin-typescript',
@@ -64,6 +59,18 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-purgecss',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Eggfirst`,
+        short_name: `Eggfirst`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: 'src/images/icon.png',
+      },
+    },
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {

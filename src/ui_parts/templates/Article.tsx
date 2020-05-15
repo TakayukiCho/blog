@@ -1,24 +1,29 @@
 import { css } from '@emotion/core';
-import { graphql } from 'gatsby';
+import { graphql, PageRendererProps } from 'gatsby';
 
 import tw from 'twin.macro';
 
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 
-import IndexLayout from '../layouts';
-import PageTitle from '../components/atoms/PageTitle';
-import { FrontMatter, ChildImageSharp } from '../models/frontMatter';
-import { extendsToEdge } from '../styles/spacings';
-import DateLabelBig from '../components/atoms/DateLabelBig';
-import BodyContainer from '../components/BodyContainer';
+import styled from '@emotion/styled';
+import Helmet from 'react-helmet';
+import IndexLayout from '../layouts/Layout';
+import PageTitle from '../elements/PageTitle';
+import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
+import { extendsToEdge } from '../../styles/spacings';
+import DateLabelBig from '../elements/DateLabelBig';
+import BodyContainer from '../elements/BodyContainer';
+import { isoDateToJaFormat } from '../../utils/date';
+import SocialShares from '../compounds/SocialShares';
 
-interface PageTemplateProps {
+type PageTemplateProps = {
   data: {
     site: {
       siteMetadata: {
         title: string;
         description: string;
+        siteUrl: string;
         author: {
           name: string;
           url: string;
@@ -26,13 +31,14 @@ interface PageTemplateProps {
       };
     };
     mdx: {
+      id: string;
       body: string;
       excerpt: string;
       frontmatter: FrontMatter;
     };
     file: ChildImageSharp;
   };
-}
+} & PageRendererProps;
 
 const titleStyle = css`
   &::after {
@@ -43,15 +49,40 @@ const titleStyle = css`
   }
 `;
 
-const contentStyle = css`
+const ContentWrapper = styled.div`
   & p {
     ${tw`text-gray-800 text-base whitespace-pre-line mb-4 font-light leading-relaxed tracking-wider`}
   }
 `;
 
-const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => (
+const Article = ({ data, location }: PageTemplateProps) => (
   <IndexLayout>
-    <BodyContainer>
+    <Helmet
+      meta={[
+        {
+          name: 'og:title',
+          content: data.mdx.frontmatter.title,
+        },
+        {
+          name: 'og:description',
+          content: data.mdx.excerpt,
+        },
+        {
+          name: 'og:image',
+          content: `${data.site.siteMetadata.siteUrl}${data.mdx.frontmatter.image?.childImageSharp.fluid.src}`,
+        },
+        {
+          name: 'twitter:creator',
+          content: '@changguizhiT',
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary',
+        },
+      ]}
+    />
+
+    <BodyContainer css={tw`bg-color-gray-100`}>
       <Img
         alt={data.mdx.frontmatter.title}
         fluid={
@@ -60,17 +91,25 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ data }) => (
         }
         css={[extendsToEdge, tw`mb-5 lg:max-w-3xl lg:mx-auto`]}
       />
-      <DateLabelBig css={tw`mb-3 ml-px`}>{data.mdx.frontmatter.date}</DateLabelBig>
+      <DateLabelBig css={tw`mb-2 ml-px`}>
+        {isoDateToJaFormat(data.mdx.frontmatter.date)}
+      </DateLabelBig>
       <PageTitle css={titleStyle}>{data.mdx.frontmatter.title}</PageTitle>
       {/* eslint-disable-next-line react/no-danger */}
-      <div css={contentStyle}>
+      <ContentWrapper css={tw`mb-8`}>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </div>
+      </ContentWrapper>
+      <SocialShares
+        url={location.href}
+        styles={css`
+          ${tw`pb-16`}
+        `}
+      />
     </BodyContainer>
   </IndexLayout>
 );
 
-export default PageTemplate;
+export default Article;
 
 export const query = graphql`
   query PageTemplateQuery($slug: String!) {
@@ -78,6 +117,7 @@ export const query = graphql`
       siteMetadata {
         title
         description
+        siteUrl
         author {
           name
           url
@@ -87,6 +127,7 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       excerpt
+      id
       frontmatter {
         image {
           childImageSharp {

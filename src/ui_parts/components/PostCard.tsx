@@ -2,7 +2,9 @@ import React from 'react';
 import tw from 'twin.macro';
 import Img, { FluidObject } from 'gatsby-image';
 import { Link } from 'gatsby';
-import DateLabel from '../atoms/DateLabel';
+
+import DateLabel from '../elements/DateLabel';
+import { isoDateToJaFormat } from '../../utils/date';
 
 const Wrapper = tw.article`mb-10 last:mb-0`;
 const Title = tw.h2`text-gray-800 font-semibold whitespace-no-wrap text-xl`;
@@ -19,7 +21,7 @@ const PostCard = ({ image, date, title, slug }: Props) => (
   <Wrapper>
     <Link to={slug}>
       <Img fluid={image} css={tw`mb-3`} />
-      <DateLabel css={tw`mb-3`}>{date}</DateLabel>
+      <DateLabel css={tw`mb-2`}>{isoDateToJaFormat(date)}</DateLabel>
       <Title>{title}</Title>
     </Link>
   </Wrapper>

@@ -1,35 +1,32 @@
-import { GatsbyNode } from 'gatsby'
+import { GatsbyNode } from 'gatsby';
 
-import path = require('path')
+import path = require('path');
 
 type AllMdx = {
   allMdx: {
     edges: Array<{
       node: {
         fields: {
-          layout: string
-          slug: string
-        }
-      }
-    }>
-  }
-}
+          layout: string;
+          slug: string;
+        };
+      };
+    }>;
+  };
+};
 
 type Categories = {
   allMdx: {
-    distinct: string[]
-  }
-}
+    distinct: string[];
+  };
+};
 
 export type CategoryPageContext = {
-  category: string
-}
+  category: string;
+};
 
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions
-}) => {
-  const { createPage } = actions
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
+  const { createPage } = actions;
 
   const allMdx = await graphql<AllMdx>(`
     {
@@ -44,27 +41,27 @@ export const createPages: GatsbyNode['createPages'] = async ({
         }
       }
     }
-  `)
+  `);
 
   if (allMdx.errors) {
     // eslint-disable-next-line no-console
-    console.error(allMdx.errors)
-    throw new Error(allMdx.errors)
+    console.error(allMdx.errors);
+    throw new Error(allMdx.errors);
   }
 
   // eslint-disable-next-line no-unused-expressions
   allMdx.data?.allMdx.edges.forEach(({ node }) => {
-    const { slug, layout } = node.fields
+    const { slug, layout } = node.fields;
 
     createPage({
       path: slug,
-      component: path.resolve(`./src/templates/${layout || 'page'}.tsx`),
+      component: path.resolve(`./src/ui_parts/templates/${layout || 'Article'}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
-        slug
-      }
-    })
-  })
+        slug,
+      },
+    });
+  });
 
   const categories =
     (
@@ -75,18 +72,18 @@ export const createPages: GatsbyNode['createPages'] = async ({
           }
         }
       `)
-    ).data?.allMdx.distinct ?? []
+    ).data?.allMdx.distinct ?? [];
 
   categories.forEach(category => {
     createPage<CategoryPageContext>({
       path: `/${category}/`,
-      component: path.resolve('./src/templates/category.tsx'),
+      component: path.resolve('./src/ui_parts/templates/Category.tsx'),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
-        category
-      }
-    })
-  })
-}
+        category,
+      },
+    });
+  });
+};
 
-export default createPages
+export default createPages;

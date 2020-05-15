@@ -1,13 +1,12 @@
 {
-  "name": "gatsby-starter-typescript-plus",
-  "description": "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+  "name": "blog",
+  "description": "blog",
   "version": "1.0.0",
   "private": true,
-  "author": "Resi Respati <resir014@gmail.com>",
+  "author": "Takayuki Cho <taka.3365@gmail.com>",
   "keywords": [
-    "gatsby"
+    "blog"
   ],
-  "license": "MIT",
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
@@ -15,13 +14,24 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "dev": "gatsby develop",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "start": "yarn jdev",
-    "test": "yarn type-check && yarn lint",
-    "type-check": "tsc"
+    "lint": "eslint '{src,gatsby}/**/*.{ts,tsx}'",
+    "start": "yarn jdev"
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "eslint . --ext .ts,.tsx --cache"
+    ],
+    "gatsby/**/*.ts?(x)": [
+      "eslint . --ext .ts,.tsx --cache"
+    ]
   },
   "dependencies": {
     "@davidodio/gatsby-plugin-emotion-css": "^1.0.0-beta.1",
@@ -31,11 +41,13 @@
     "@mdx-js/react": "^1.6.1",
     "babel-plugin-styled-components": "^1.10.1",
     "classnames": "^2.2.6",
+    "dayjs": "^1.8.27",
     "gatsby": "^2.21.0",
     "gatsby-image": "^2.2.1",
     "gatsby-plugin-canonical-urls": "^2.1.0",
     "gatsby-plugin-emotion": "^4.1.0",
     "gatsby-plugin-google-tagmanager": "^2.3.1",
+    "gatsby-plugin-manifest": "^2.4.3",
     "gatsby-plugin-mdx": "^1.2.4",
     "gatsby-plugin-purgecss": "^5.0.0",
     "gatsby-plugin-react-helmet": "^3.1.0",
@@ -62,6 +74,7 @@
     "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
+    "react-share": "^4.1.0",
     "react-typography": "^0.16.19",
     "tailwindcss": "^1.4.4",
     "ts-node": "^8.10.1",
@@ -75,14 +88,19 @@
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
+    "@types/react-share": "^3.0.3",
     "@types/typography": "^0.16.3",
+    "@types/vfile-message": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "eslint": "^6.6.0",
     "eslint-config-blvd": "^1.0.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.20.0",
     "gh-pages": "^2.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }

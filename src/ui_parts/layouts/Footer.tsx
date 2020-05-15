@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
+import Copyright from '../elements/Copyrighit';
 
 const Wrapper = tw.div`flex flex-col py-3 bg-gray-900`;
-const Copyright = tw.p`text-sm text-gray-100 text-center`;
 
 const Footer = () => (
   <Wrapper>
