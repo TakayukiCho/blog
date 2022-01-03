@@ -48,7 +48,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       />
       <Helmet
         htmlAttributes={{ lang: 'ja' }}
-        title={data.site.siteMetadata.title}
+        defaultTitle={data.site.siteMetadata.title}
+        titleTemplate={`%s | ${data.site.siteMetadata.title}`}
         meta={[
           { name: 'description', content: data.site.siteMetadata.description },
           { name: 'keywords', content: data.site.siteMetadata.keywords },

@@ -30,6 +30,13 @@ const Overlay = styled.div`
   visibility: hidden;
 `;
 
+const NavigationWrapper = styled.div`
+  ${tw`last:mb-0`}
+  & > * {
+    ${tw`mb-3`}
+  }
+`;
+
 type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -45,10 +52,12 @@ const Navigation = ({ isOpen, onClose }: Props) => {
             ${tw`self-end mb-5`}
           `}
         />
-        {categories.map((navItem, index) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading,react/no-array-index-key
-          <NavigationItem {...navItem} key={index} />
-        ))}
+        <NavigationWrapper>
+          {categories.map((navItem, index) => (
+            // eslint-disable-next-line react/jsx-props-no-spreading,react/no-array-index-key
+            <NavigationItem {...navItem} key={index} />
+          ))}
+        </NavigationWrapper>
       </Wrapper>
       <Overlay css={isOpen ? shown : undefined} role="button" onClick={onClose} />
     </>

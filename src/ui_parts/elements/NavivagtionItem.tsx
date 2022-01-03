@@ -12,7 +12,7 @@ const Icon = tw.img`w-8 h-8 fill-current stroke-current text-white`;
 const Label = tw.span`text-lg font-semibold tracking-wide`;
 
 const NavigationItem = ({ name, label, icon }: Props) => (
-  <Link to={`/${name}`}>
+  <Link to={`/${name}`} css={tw`block`}>
     <Wrapper>
       <Icon src={icon} alt={name} css={tw`mr-2`} />
       <Label>{label}</Label>

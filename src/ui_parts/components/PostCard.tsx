@@ -7,7 +7,7 @@ import DateLabel from '../elements/DateLabel';
 import { isoDateToJaFormat } from '../../utils/date';
 
 const Wrapper = tw.article`mb-10 last:mb-0`;
-const Title = tw.h2`text-gray-800 font-semibold whitespace-no-wrap text-xl`;
+const Title = tw.h2`text-gray-800 font-semibold whitespace-pre-wrap text-xl`;
 
 type Props = {
   title: string;

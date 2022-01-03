@@ -58,6 +58,7 @@ const ContentWrapper = styled.div`
 const Article = ({ data, location }: PageTemplateProps) => (
   <IndexLayout>
     <Helmet
+      title={data.mdx.frontmatter.title}
       meta={[
         {
           name: 'og:title',

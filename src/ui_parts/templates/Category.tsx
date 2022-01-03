@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import tw from 'twin.macro';
 import { css } from '@emotion/core';
+import Helmet from 'react-helmet';
 import IndexLayout from '../layouts/Layout';
 import { FrontMatter, ChildImageSharp } from '../../models/frontMatter';
 import { Fields } from '../../models/fields';
@@ -36,11 +37,12 @@ const titleStyle = css`
   }
 `;
 
-const IndexPage = ({ data, pageContext }: Props) => {
+const Category = ({ data, pageContext }: Props) => {
   const categoryLabel = getCategoryByName(pageContext.category)?.label ?? 'その他';
 
   return (
     <IndexLayout>
+      <Helmet title={categoryLabel} />
       <BodyContainer css={tw`bg-gray-100 pb-8 pt-6`}>
         <PageTitle css={titleStyle}>{`${categoryLabel}の記事一覧`}</PageTitle>
         {data.allMdx.nodes.map(({ frontmatter, fields, id }) => (
@@ -60,7 +62,7 @@ const IndexPage = ({ data, pageContext }: Props) => {
   );
 };
 
-export default IndexPage;
+export default Category;
 
 export const query = graphql`
   query CategoryIndex($category: String!) {

@@ -1,10 +1,16 @@
 import EssayIcon from '../images/categories/essay.svg';
+import HistoryIcon from '../images/categories/history.svg';
 
 export const categories = [
   {
     name: 'essay',
     label: 'エッセイ',
     icon: EssayIcon,
+  },
+  {
+    name: 'history',
+    label: '歴史',
+    icon: HistoryIcon,
   },
 ] as const;
 
